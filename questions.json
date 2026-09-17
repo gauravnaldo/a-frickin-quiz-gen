@@ -1,0 +1,21 @@
+{
+  "Defense Knowledge": [
+    {
+      "question": "Which of the following is the equivalent rank in the Army to the Naval rank of Captain?",
+      "options": ["Colonel", "Brigadier", "Major", "Captain"],
+      "answer": "Colonel",
+      "explanation": "A Captain in the Navy is equivalent to a Colonel in the Army."
+    }
+  ],
+  "Geography": [
+    {
+      "question": "The Tropic of Cancer does NOT pass through which of these Indian states?",
+      "options": ["Gujarat", "Rajasthan", "Odisha", "Tripura"],
+      "answer": "Odisha",
+      "explanation": "It passes through 8 states, but not Odisha."
+    }
+  ],
+  "History": [ ],
+  "General Science": [ ],
+  "Current Affairs": [ ]
+}

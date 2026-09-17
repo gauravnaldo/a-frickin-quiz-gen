@@ -1,0 +1,41 @@
+import json
+import random
+import questionary
+from rich.console import Console
+from rich.panel import Panel
+
+console = Console()
+
+with open("questions.json", "r", encoding="utf-8") as file:
+    all_sets = json.load(file)
+
+chosen_set_name = random.choice(list(all_sets.keys()))
+set_questions = all_sets[chosen_set_name]
+
+questions_to_ask = random.sample(set_questions, min(10, len(set_questions)))
+
+score = 0
+
+console.print(Panel(f"[bold yellow]Knowledge Prep Quiz[/bold yellow]\nPlaying Set: [bold cyan]{chosen_set_name}[/bold cyan]", expand=False))
+
+for index, item in enumerate(questions_to_ask, 1):
+    console.print(f"\n[bold cyan]Question {index}/{len(questions_to_ask)}:[/bold cyan] {item['question']}")
+    
+    shuffled_options = item["options"].copy()
+    random.shuffle(shuffled_options)
+    
+    answer = questionary.select(
+        "Select your answer:",
+        choices=shuffled_options
+    ).ask()
+    
+    if answer == item["answer"]:
+        console.print("[bold green]✔ Correct![/bold green]")
+        score += 1
+    else:
+        console.print(f"[bold red]✖ Incorrect.[/bold red] The correct answer was [bold]{item['answer']}[/bold].")
+        
+    console.print(f"[dim]💡 {item['explanation']}[/dim]")
+
+console.print("\n")
+console.print(Panel(f"[bold white]Quiz Complete![/bold white]\nYour Score: [bold green]{score}/{len(questions_to_ask)}[/bold green]", expand=False))
